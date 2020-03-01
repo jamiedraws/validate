@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  height: inherit;
+  min-height: 100vh;
+  font: 16px/1.5 "Questrial", sans-serif;
+}
+@media all and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+}
+@supports (display: flex) {
+  body {
+    height: auto;
+  }
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 1rem;
+  padding: 1em;
+  background: #2d54b9;
+  color: white;
+}
+.bar__input {
+  flex: 3 1 30em;
+  padding: 1em;
+  border: none;
+  transition: background 0.2s ease-in-out;
+}
+.bar__input::placeholder {
+  color: rgba(255, 255, 255, 0.51);
+}
+.bar__button, .bar__input {
+  background: transparent;
+  color: currentColor;
+  font: inherit;
+}
+.bar__input:focus {
+  background: #2d2d2d;
+}
+.bar__input:invalid ~ .bar__button {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.bar__input:valid ~ .bar__button {
+  opacity: 1;
+  pointer-events: all;
+  background: #27a2d4;
+}
+.bar__input:valid ~ .bar__button:hover, .bar__input:valid ~ .bar__button:focus {
+  background: white;
+  color: #27a2d4;
+  border-color: #27a2d4;
+}
+.bar__button {
+  flex: 1 1 10em;
+  padding: 1em;
+  border: 0.1em solid transparent;
+  text-decoration: none;
+  transition: background 0.2s ease-in-out;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  font-family: inherit;
+}
+.form input,
+.form select, .form__checkbox, .form__button {
+  padding: 1em;
+  font-size: 1rem;
+  -webkit-appearance: none;
+  border: 2px solid rgba(0, 0, 0, 0.54);
+  border-radius: 4px;
+}
+.form input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  padding: 0;
+}
+.form__checkbox {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  padding: 0;
+  box-sizing: content-box;
+}
+.form input,
+.form select, .form__message {
+  flex: 1 1 100%;
+}
+.form__button {
+  flex: 0 0 auto;
+}
+.form__item {
+  margin: 1em;
+}
+.form__option {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.form__option .form__checkbox {
+  margin-right: 1em;
+}
+.form__toggle {
+  align-items: baseline;
+}
+.form__toggle .form__checkbox {
+  position: relative;
+  top: 0.2em;
+}
+.form__message {
+  display: inline-flex;
+  margin: 0 0.25em;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  background: no-repeat right 0.5em center none;
+  background-size: 1.5em;
+}
+.form__message > span {
+  visibility: hidden;
+}
+
+.form input:valid,
+.form select:valid,
+.form textarea:valid, input:valid:checked ~ .form__checkbox {
+  border-color: #006700;
+  color: #006700;
+}
+input:checked ~ .form__checkbox {
+  background-image: url("data:image/svg+xml;charset=utf8,                %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E                    %3Cpath fill='none' stroke-width='3px' stroke='%23006700' d='M1.73,12.91 8.1,19.28 22.79,4.59'%3E%3C/path%3E                %3C/svg%3E");
+  background-size: 0.9em 0.9em;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.form [required]:not(:placeholder-shown):invalid, .form .form__error {
+  border-color: #a50000;
+  color: #a50000;
+}
+[required]:not(:placeholder-shown):invalid ~ .form__message > span, [required]:not(:placeholder-shown):invalid ~ .form__route-validation-message .form__message > span {
+  visibility: visible;
+}
+.form__error ~ .form__message, .form__error ~ .form__route-validation-message .form__message {
+  background-image: url("data:image/svg+xml;charset=utf8,                %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E                    %3Cpath d='M0 0h24v24H0z' fill='none'%3E%3C/path%3E                    %3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z' fill='%23a50000'%3E%3C/path%3E                %3C/svg%3E");
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5em;
+}
+.form__error ~ .form__message > span, .form__error ~ .form__route-validation-message .form__message > span {
+  visibility: visible;
+}
+
+.form {
+  max-width: 600px;
+  flex: 0 1 600px;
+}
+.form__group {
+  align-items: flex-start;
+}
+.form__group, .form__item {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form__item {
+  flex: 1 1;
+  align-items: center;
+}
+.form__item--x1 {
+  flex-basis: 100%;
+}
+.form__item--x2 {
+  flex-basis: 200px;
+}
+
+/*# sourceMappingURL=style.css.map */

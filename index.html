@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <header class="bar">
+            My Website
+        </header>
+        <main>
+            <form id="sign-up-form" class="form" action="/">
+                <div role="group" class="form__group">
+                    <div class="form__item form__item--x1">
+                        <h1>Sign Up</h1>
+                        <p>
+                            If you don't wanna be no boo-boo the foo and you're
+                            ready to become a better you, you should sign up
+                            pleighboi.
+                        </p>
+                    </div>
+
+                    <!-- First name -->
+                    <div class="form__item form__item--x2">
+                        <input
+                            id="FirstName"
+                            type="text"
+                            placeholder="First name"
+                            required
+                        />
+                        <div class="form__message" aria-live="assertive">
+                            <span id="FirstNameMessage"
+                                >Enter a first name.</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Last name -->
+                    <div class="form__item form__item--x2">
+                        <input
+                            id="LastName"
+                            type="text"
+                            placeholder="Last name"
+                            required
+                        />
+                        <div class="form__message" aria-live="assertive">
+                            <span id="LastNameMessage">Enter a last name.</span>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form__item form__item--x2">
+                        <input
+                            id="Phone"
+                            type="text"
+                            placeholder="Phone"
+                            required
+                            pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-.]?([0-9]{4})$"
+                        />
+                        <div class="form__message" aria-live="assertive">
+                            <span id="PhoneMessage">Enter a phone number.</span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form__item form__item--x2">
+                        <input
+                            id="Email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                        />
+                        <div class="form__message" aria-live="assertive">
+                            <span id="EmailMessage"
+                                >Enter an email address.</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Confirm Email -->
+                    <div class="form__item form__item--x2">
+                        <input
+                            id="ConfirmEmail"
+                            type="email"
+                            placeholder="Confirm email"
+                            required
+                        />
+                        <div class="form__message" aria-live="assertive">
+                            <span id="ConfirmEmailMessage"
+                                >Match the email address.</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form__item form__item--x1">
+                        <label for="Agree" class="form__option form__toggle">
+                            <input id="Agree" type="checkbox" required />
+                            <span class="form__checkbox"></span>
+                            <span class="form__route-validation-message">
+                                <span
+                                    ><abbr
+                                        title="This field is required"
+                                        aria-label="Required"
+                                        >*</abbr
+                                    >I agree that I'm ready to be a better me
+                                    and not go back to my old ways.</span
+                                >
+                                <div class="form__message">
+                                    <span>This checkbox is required.</span>
+                                </div>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="form__item">
+                        <button
+                            type="submit"
+                            class="form__button"
+                            id="submitButton"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <script defer src="js/validate.js"></script>
+        <script defer src="js/app.js"></script>
+    </body>
+</html>

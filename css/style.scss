@@ -1,0 +1,13 @@
+@use "components/form";
+@use "layouts/default";
+
+@include form.module;
+@include form.states;
+@include form.layout {
+    max-width: 600px;
+    flex: 0 1 600px;
+
+    &__item--x2 {
+        flex-basis: 200px;
+    }
+}

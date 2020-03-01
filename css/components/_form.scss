@@ -1,0 +1,178 @@
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(
+                str-slice($string, $index + str-length($search)),
+                $search,
+                $replace
+            );
+    }
+
+    @return $string;
+}
+
+@function convert-to-hex($color) {
+    @return str-replace("#{$color}", "#", "%23");
+}
+
+@mixin layout {
+    .form {
+        &__group {
+            align-items: flex-start;
+        }
+
+        &__group,
+        &__item {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__item {
+            flex: 1 1;
+            align-items: center;
+        }
+
+        &__item--x1 {
+            flex-basis: 100%;
+        }
+
+        @content;
+    }
+}
+
+@mixin module {
+    $size: 20px;
+    .form {
+        font-family: inherit;
+
+        input,
+        select,
+        &__checkbox,
+        &__button {
+            padding: 1em;
+            font-size: 1rem;
+            -webkit-appearance: none;
+            border: 2px solid rgba(0, 0, 0, 0.54);
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            padding: 0;
+        }
+
+        &__checkbox {
+            width: #{$size};
+            height: #{$size};
+            flex: 0 0 #{$size};
+            padding: 0;
+            box-sizing: content-box;
+        }
+
+        input,
+        select,
+        &__message {
+            flex: 1 1 100%;
+        }
+
+        &__button {
+            flex: 0 0 auto;
+        }
+
+        &__item {
+            margin: 1em;
+        }
+
+        &__option {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        &__option &__checkbox {
+            margin-right: 1em;
+        }
+
+        &__toggle {
+            align-items: baseline;
+        }
+
+        &__toggle &__checkbox {
+            position: relative;
+            top: 0.2em;
+        }
+
+        &__message {
+            display: inline-flex;
+            margin: 0 0.25em;
+            padding: 0.5em;
+            border-radius: 0.25em;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            background: no-repeat right 0.5em center none;
+            background-size: 1.5em;
+
+            > span {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+@mixin states {
+    $color-valid: #006700;
+    $color-invalid: #a50000;
+
+    .form {
+        input:valid,
+        select:valid,
+        textarea:valid,
+        input:valid:checked ~ &__checkbox {
+            border-color: #{$color-valid};
+            color: #{$color-valid};
+        }
+
+        input:checked ~ &__checkbox {
+            background-image: url("data:image/svg+xml;charset=utf8,\
+                %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E\
+                    %3Cpath fill='none' stroke-width='3px' stroke='#{convert-to-hex($color-valid)}' d='M1.73,12.91 8.1,19.28 22.79,4.59'%3E%3C/path%3E\
+                %3C/svg%3E");
+            background-size: 0.9em 0.9em;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        [required]:not(:placeholder-shown):invalid,
+        & &__error {
+            border-color: #{$color-invalid};
+            color: #{$color-invalid};
+        }
+
+        [required]:not(:placeholder-shown):invalid ~ &__message,
+        [required]:not(:placeholder-shown):invalid
+            ~ &__route-validation-message
+            &__message {
+            > span {
+                visibility: visible;
+            }
+        }
+
+        &__error ~ &__message,
+        &__error ~ &__route-validation-message &__message {
+            background-image: url("data:image/svg+xml;charset=utf8,\
+                %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E\
+                    %3Cpath d='M0 0h24v24H0z' fill='none'%3E%3C/path%3E\
+                    %3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z' fill='#{convert-to-hex($color-invalid)}'%3E%3C/path%3E\
+                %3C/svg%3E");
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5em;
+
+            > span {
+                visibility: visible;
+            }
+        }
+    }
+}
