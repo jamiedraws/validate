@@ -61,11 +61,6 @@
             value: function(callback) {
                 this.elements.form.addEventListener("submit", callback);
             }
-        },
-        getForm: {
-            value: function(callback) {
-                callback(this.elements.form);
-            }
         }
     });
 
@@ -99,6 +94,14 @@
         isInvalid: function(response) {
             if (this.element.validity.patternMismatch) {
                 this.element.setCustomValidity(response);
+            }
+        },
+        matches: function(field, response) {
+            if (field.element.value !== this.element.value) {
+                this.element.setCustomValidity(response);
+            } else {
+                field.clearMessage();
+                this.clearMessage();
             }
         }
     });

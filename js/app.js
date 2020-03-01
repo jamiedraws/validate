@@ -4,14 +4,6 @@
             if (this.element.value === "") {
                 this.element.setCustomValidity(response);
             }
-        },
-        matches: function(field, response) {
-            if (field.element.value !== this.element.value) {
-                this.element.setCustomValidity(response);
-            } else {
-                field.clearMessage();
-                this.clearMessage();
-            }
         }
     });
 
